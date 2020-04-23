@@ -1,0 +1,58 @@
+@import 'nav';
+@import 'examples';
+@import 'index';
+@import 'page';
+
+body, html {
+    padding: 0;
+    margin: 0;
+    background-color: white;
+}
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+}
+
+body {
+    padding: 0px 0px;
+}
+
+*{
+    font-family: 'avenir', sans-serif;
+} 
+
+/*--- text bodies ---*/
+
+.strip {
+    max-width: 75%;
+    padding-top: 20px;
+    padding-bottom: 100px;
+}
+
+.paragraph {
+    max-width: 400px;
+    font-size: 10pt;
+    font-weight: lighter;
+}
+
+/*---- elements ----*/ 
+
+button {
+    border: 1px solid #fff;
+    padding: 3px 10px;
+    margin: 5px;
+}
+.highlight * {
+    font-family: $font-code;
+    font-size: $font-size-code;
+}
+pre {
+    padding: $font-size-code;
+}
+code * {
+    font-family: mono;
+}
+

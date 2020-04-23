@@ -1,0 +1,17 @@
+collections:
+  examples:
+    output: true
+    permalink: /domorphic/:path
+
+include: ['examples/source','examples/includes']
+
+defaults:   
+  - scope:
+      path: ""
+      type: "examples"
+    values: 
+      layout: "example"
+      js:     true
+
+sass:
+    sass_dir: _sass

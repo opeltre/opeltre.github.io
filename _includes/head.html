@@ -1,0 +1,19 @@
+<meta charset="utf-8">
+
+<title>{{ page.title }}</title>
+
+<!-- mathjax -->
+{% if page.math == 2 %}
+{% include mathjax2.html %}
+{% else if page.math %}
+{% include mathjax.html %}
+{% endif %}
+
+<!-- domorphic + __ --> 
+{% if page.js %}
+{% include lib.html %}
+{% endif %}
+
+<link rel='stylesheet' href='/assets/css/fonts.css'>
+<link rel='stylesheet' href='/assets/css/styles.css'> 
+<link rel='stylesheet' href='/assets/css/hl_github.css'>

@@ -1,0 +1,45 @@
+@import 'variables'
+
+%navlist 
+  list-style: none
+  padding-left: 0px
+  margin: 0px 
+
+nav ul 
+  @extend %navlist
+  border-bottom: 2px solid $color-cream 
+  padding: 0px 30px
+  height: 50px
+
+aside ul
+  @extend %navlist
+
+aside 
+  border: 1px solid $color-cream
+  border-top: 0px
+
+/*--- items ---*/ 
+%navitem 
+  a 
+    text-decoration: none
+  a, a:visited
+    color: #000
+  a:hover
+    color: $a-color
+
+
+#home 
+  font-size: 20px
+  margin: 0px
+
+aside li    
+  @extend %navitem 
+  padding: 5px 30px
+  border-bottom: 1px solid $color-cream
+  a 
+    color: #789
+
+nav li 
+  @extend %navitem
+  margin: 0px 40px
+

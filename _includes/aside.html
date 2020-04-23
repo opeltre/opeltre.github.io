@@ -1,0 +1,9 @@
+<aside> 
+    <ul class="flex-v"> 
+        {% for example in site.examples %} 
+        <li > 
+            <a href="{{example.url}}">{{example.name}}</a> 
+        </li> 
+        {% endfor %}
+    </ul> 
+</aside> 

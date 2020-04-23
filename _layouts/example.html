@@ -1,0 +1,17 @@
+---
+layout: domorphic 
+---
+
+<div class="flex-h start wrap"> 
+    {% include_relative includes/code_div.html %}
+
+    <main class="page example tr-width"> 
+        <h2> {{page.title}} </h2> 
+        {% include_relative includes/app_div.html %}
+        {{ content }}
+    </main>
+
+    <div class="grow tr-width"></div> 
+</div> 
+
+<script src="/domorphic/source/{{page.script}}.js"> </script> 

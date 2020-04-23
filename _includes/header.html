@@ -1,0 +1,20 @@
+<header class="flex-v"> 
+    <nav> 
+        <ul class="flex-h center"> 
+
+        <li id="home">
+            <a href="/"> About </a>
+        </li> 
+
+        <li class="grow"></li>  
+
+        {% for item in site.data.nav %} 
+        <li> 
+            <a href="{{item.url}}">{{item.name}}</a> 
+        </li> 
+        {% endfor %}
+        
+        <li class="grow-2"></li> 
+        </ul>
+    </nav> 
+</header> 
