@@ -1,1 +1,0 @@
-/home/node/domorphic/examples/color.js
