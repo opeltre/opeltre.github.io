@@ -3,12 +3,16 @@ layout: domorphic
 ---
 
 <div class="flex-h start wrap"> 
-    {% include_relative includes/code_div.html %}
-
+    <div class="grow"></div> 
     <main class="page example tr-width"> 
+
         <h2> {{page.title}} </h2> 
+
         {% include_relative includes/app_div.html %}
+
         {{ content }}
+
+        {% include_relative includes/code_div.html %}
     </main>
 
     <div class="grow tr-width"></div> 

@@ -3,21 +3,3 @@
     {% endhighlight %}
 </div> 
 
-<div class="flex-h grow pull">
-    <div>
-       <button id="source-btn" onclick="source()">&gt;</button>
-    </div> 
-</div> 
-
-<script> 
-    source.on = false;
-        
-    function source () {
-        source.on = ! source.on
-        let div = document.getElementById('source'),
-            btn = document.getElementById('source-btn');
-//        div.className = source.on ? "show" : "hide";
-        div.style.width = source.on ? '40%' : '0%';
-        btn.innerHTML = source.on ? "&lt;" : "&gt;";
-    }
-</script> 

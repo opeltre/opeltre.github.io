@@ -6,41 +6,40 @@ let IO = dom.IO,
 //--- Initial Model ---
 
 let M = {
-    color:  '#499',
+    color:  '#a25',
+    regex:  /^([0-9|[a-f]){3}$/,
     size:   ['150px', '150px'],
-    digits: 3,
     put:    '#app'
 };
 
 //--- View ---
 
+//  app : m -> Node
 let app = dom('div')
     .put(m => m.put);
 
+//  view : m -> Node
 let view = dom('div')
     .place('view')
     .style('background-color', m => m.color)
     .style('width', m => m.size[0])
     .style('height', m => m.size[1]);
 
+//  input : m -> Node(e)
 let input = dom('input')
-    .on('keyup', listener)
     .style('width', m => m.size[1])
-    .style('box-sizing', 'border-box');
+    .attr('placeholder', m => m.color.slice(1))
+    .on('keyup', (e, io, m) => {
+        let color = e.target.value;
+        if (m.regex.test(color)) 
+            io.send('#' + color);
+    });
 
 app.append(view, input);
 
-//--- Events ---
-
-function listener (e, io, m) {
-    let color = e.target.value,
-        re = /^([0-9]|[a-f])*$/;
-    if (re.test(color) && color.length === m.digits)
-        return io.send('#'+color);
-}
-
 //--- Update ---
 
+//  update : e -> IO(e)
 let update = e => e === 'start'
     ? state()
         .reads(IO.put(app))
@@ -50,10 +49,12 @@ let update = e => e === 'start'
 
 //--- Main ---
 
+//  main : (e, m) -> IO(e)
 let main = (e0, m0) => {
     let [io, m1] = update(e0).run(m0);
     return io.await()
         .bind(e1 => main(e1, m1));
 };
 
+//  io : IO(e)
 let io = main('start', M);

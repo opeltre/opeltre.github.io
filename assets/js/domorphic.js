@@ -540,7 +540,6 @@ DOM.unit = (D, io=IO()) => {
     _r.forEach(addListener)(D.on);
 
     D.place && io.keep(D.place, N);
-    D.place && __.logs(`placed ${D.place}`)(io.stack)
     return N;
 }
 
@@ -777,9 +776,6 @@ function dom (t, a, b) {
     //  my : m -> node
     let my = m => IO.node(my)(m);
    
-    //.IO : (act, key) -> m -> IO(e)
-    my.IO = (act, key) => M => IO[act](my, key)(M);
-
     //.tree : m -> tree(data)
     my.tree = dom.tree(my);
 
@@ -829,13 +825,8 @@ dom.map = function (node, pull) {
         __.map((mi, i) => push(i)(self.node)(mi))
     )(M);
     
-    //.getNode : int -> [m'] -> node  
-    my.getNode = i => __(push(i), get(i))(self.node);
-
-    //.IO : (act, [key] || m' -> bool) -> m -> IO(e)
-    my.IO = (act, filter) => IO
-        .map(my.getNode, my.pull())
-        .IO(act, filter);
+    //.get : int -> [m'] -> node  
+    my.get = i => __(push(i), get(i))(self.node);
 
     //.trees : m -> [tree(data)]
     my.trees = M => __(
@@ -874,7 +865,7 @@ let _r = __.r;
 *///-------------------- 
 
 //.return : a -> IO(a)
-IO.return = y => IO(() => y);
+IO.return = y => IO().push(() => y);
 
 //.bind : IO(a) -> (a -> IO(b)) -> IO(b)
 IO.bind = io => iof => io.bind(iof);
@@ -957,43 +948,103 @@ IO.remove = (node) => m => {
         .do(n => remove(io, key))
         .return(m);
 };
-/*---
-    This one chains operations for map nodes: 
-        //   : m -> IO (e) 
-        nodes.IO('put', [4, 5, 6])
-             .IO('replace', m => m.bool)
-             .IO('remove', [0, 2]);
 
+/*--- Output operations with node maps ---
+
+    One may associate specific keys to IO operations. 
+    The `filter` argument is interpreted as either as 
+    a list of circular indices `[-1, 2, 3, ...]` to 
+    select from the model, or as a filtering function 
+    on the model's elements: 
+    
+        f : [m] -> bool 
+
+    Only those values satisfying the condition will be kept, 
+    and their index passed to the IO action for proper 
+    maintenance of the node register. In particular
+    the `remove` action shifts all remaining nodes 
+    in the register after DOM removal. 
+
+    Assuming `nodes = node.map()`,
+    
+        IO.with(nodes)
+            .set([0, 2, -2])
+            .place([5, 6, 7])
+            .remove(mi => mi.alive === false)
+
+    is functionally equivalent to:  
+
+        IO.map(node)
+            .set(...)
+            ...
 *///---
-IO.map = (node, pull) => {
 
-    let actions = [];
-    let keys = filter => typeof filter === 'function'
-        ? ms => ms
+let keys = filter => ms => {
+    if (typeof filter === 'undefined')
+        return ms.map((mi, i) => i);
+    if (typeof filter === 'function') 
+        return ms
             .map((mi, i) => filter(mi) ? i : false)
-            .filter(j => j !== false)
-        : ms => filter
+            .filter(j => j !== false);
+    else 
+        return filter
             .map(j => j % ms.length)
             .map(j => j >= 0 ? j : j + ms.length);
-
-    let my = M => {
-        let ms = pull(M),
-            io = IO.return(ms);
-        let action = (io, [act, filter]) => 
-            keys(filter)(ms).reduce(
-                (io, j) => io.bind(() => IO[act](node(j), false)(ms)),
-                io
-            );
-        return actions.reduce((io, a) => action(io, a), io);
-    };
-
-    my.IO = (act, filter) => {
-        actions.push([act, filter || (() => true)]);
-        return my;
-    }
-
-    return my;
 }
+
+IO.map = (node, pull) => IO.with(dom.map(node, pull));
+
+['set', 'put', 'place', 'replace', 'remove'].forEach(act => {
+
+    IO.map[act] = (node, filter) => M => {
+
+        let ms = node.pull()(M),
+            ks = keys(filter)(ms);
+        let io = ks.reduce(
+            (io, j) => io
+                .bind(IO[act](node.get(j))).return(ms),
+            IO.return(ms)
+        );
+        return act === 'remove' 
+            ? io.bind(IO.map['shift'](node, ks))
+            : io;
+    }
+});
+
+IO.map['shift'] = (node, ks) => ms => {
+    let place = j => node.get(j).data(ms).place;
+    return ks.map(place)
+        .reduce(
+            (io, k) => io.do(() => shift(io, k)), 
+            IO()
+        )
+        .return(ms);
+}
+
+IO.with = node => {
+
+    let actions = [],
+        pull = __.id; 
+
+    let my = M => __(pull, my.IO)(M)
+    
+    my.IO = M => actions
+        .reduce(
+            (io, [act, ...args]) => io
+                .bind(IO.map[act](node, ...args)).return(M),
+            IO.return(M)
+        );
+
+    ['set', 'put', 'place', 'replace', 'remove'].forEach(act => {
+        my[act] = (...args) => {
+            actions.push([act, ...args]);
+            return my;
+        }
+    });
+
+    my.pull = g => {pull = g; return my}
+    return my;
+};
 
 /*------ IO instances ------
 
@@ -1133,8 +1184,11 @@ function select (io, k, strict=true) {
 
     if ((n instanceof Node && n.parentNode)|| !strict) 
         return n; 
-    if (strict) 
-        throw new Error(`IO Error: Empty or orphaned selection ${k}`)
+    if (strict) {
+        let str = k => typeof k === 'string' ? k : k.join('->');
+        throw new Error("IO Error:\n"
+            + `io.select ${str(k)} returned ${n} --- strict was demanded`);
+    }
 }
 
 function remove (io, k) {
@@ -1142,6 +1196,14 @@ function remove (io, k) {
         delete io.stack[k]
     else if (Array.isArray(k) && io.stack[k[0]])
         delete io.stack[k[0]][k[1]];
+    return io;
+}
+
+function shift (io, [k, j]) {
+    io.stack[k] = [
+        ...io.stack[k].slice(0, j),
+        ...io.stack[k].slice(j + 1)
+    ];
     return io;
 }
 

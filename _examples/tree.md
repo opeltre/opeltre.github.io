@@ -1,5 +1,6 @@
 ---
 title: Pythagorean Tree
+order: 1
 script: tree
 name: tree
 ---
