@@ -1,6 +1,7 @@
 ---
-title: "Moving Circles" 
-name: circles
+title:  "Moving Circles" 
+order:  3
+name:   circles
 script: circles
 ---
 
