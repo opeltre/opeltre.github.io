@@ -494,13 +494,13 @@ function Record () {
 },{"./__":2}],6:[function(require,module,exports){
 let dom = require('./src/dom'),
     IO = require('./src/io'),
-    update = require('./src/update'),
+    app = require('./src/update'),
     state = require('./src/state');
 
 module.exports = Object.assign(dom, 
     {IO},
     {state},
-    {update}
+    {app},
 );
 
 },{"./src/dom":9,"./src/io":10,"./src/state":12,"./src/update":14}],7:[function(require,module,exports){
@@ -751,7 +751,7 @@ dom.push =
 
 function dom (t, a, b) {
         
-    let {tag, attr, branch, html} = parse.args(t, a, b);
+    let {tag, attr, branch, other} = parse.args(t, a, b);
 
     let self = {
         // node 
@@ -761,7 +761,7 @@ function dom (t, a, b) {
         prop:       {},
         style:      {},
         on:         {},
-        html:       html || '',
+        html:       '',
         value:      '',
         class:      '',
         // branches
@@ -772,7 +772,10 @@ function dom (t, a, b) {
         put:        'body',
         place:      null 
     };
-    
+   
+    __.logs('other:')(other);
+    Object.assign(self, other); 
+
     //  my : m -> node
     let my = m => IO.node(my)(m);
    
@@ -1095,7 +1098,8 @@ let closed = __.logs('- io closed -');
 function IO (doc) {
 
     let my = {},
-        awaits = closed;
+        waiting = [],
+        queue = [];
 
     my.doc = doc || IO.document();
     my.promise = Promise.resolve();
@@ -1122,22 +1126,24 @@ function IO (doc) {
 
     //--- Input Stream ---
 
-    let close = x => {
-        awaits = closed; 
-        return x
-    };
-    let wait = listener => {
-        awaits = __.pipe(close, listener)
-    };
+    let wait = f => queue.length
+        ? f(queue.shift())
+        : waiting.push(f) 
 
-    my.await = () => my.push(() => ({then: wait}));
+    my.await = () => my.push(xs => ({then: wait}));
 
-    my.send = (...xs) => {
+    my.listen = f => my.push(__.xargs(f));
+
+    my.send = x => {
         if (my._bound_io)
-            return my._bound_io.send(...xs);
-        awaits(...xs)
+            return my._bound_io.send(x);
+        waiting.length 
+            ? waiting.shift()(x)
+            : queue.push(x);  
         return my;
     };
+
+    my.channel = (...xs) => my.send(xs);
 
     my.sleep = secs => my.push(x => __.sleep(1000 * secs).then(() => x));
 
@@ -1225,7 +1231,9 @@ function unbind (ioa, iob) {
 }
 
 },{"./DOM":7,"./dom":9,"./tree":13,"lolo":1}],11:[function(require,module,exports){
-let dom = require('./dom');
+let dom = require('./dom'),
+    __ = require('lolo'),
+    _r = __.r;
 
 let isFunction = 
     y => typeof y === 'function' && ! y._domInstance;
@@ -1243,15 +1251,37 @@ Parse.args =        // dom('tag#id.class1.class2', [ ...bs ])
         
         b = b.map(Parse.branch);
 
-        let {classes, tagname, id} = Parse.tag(tag);
-
+        let {classes, tagname, id, other} = Parse.tag(tag);
+        
         if (id) 
             Object.assign(a, {id});
+        
+        if (classes.length) {
+            let a_class = a.class, 
+                getClass = a_class 
+                    ?  M => __(a_class)(M) + ' ' + classes.join(' ')
+                    : classes.join(' ');
+            Object.assign(a, {class: getClass});
+        }
 
-        if (classes.length)
-            Object.assign(a, {class: classes.join(' ')});
+        let otherKeys = ['html', 'value', 'svg', 'style'];
+        
+        Object.assign(other, _r.pluck(...otherKeys)(a));
+        attr = _r.without(...otherKeys)(a);
 
-        return {tag: tagname, attr: a, branch: b};
+        let on = {};
+
+        _r.forEach((v, k) => {
+            if (/^on[\w]*/.test(k)) {
+                on[k.replace(/^on/, '')] = v;
+                delete attr[k];
+            }
+        })(attr);
+
+        Object.assign(other, {on});
+        other = _r.filter(v => typeof v !== 'undefined')(other);
+
+        return {tag: tagname, attr, branch: b, other};
     };
 
 
@@ -1272,28 +1302,36 @@ Parse.branch =
 Parse.tag =             // match 'tagname#id.class.class2' 
 
     tag => {
-        let re = /^(\w)+|(#[\w\-]*)|(\.[\w\-]*)/g,
+        let re = /^(\w)+|(#[\w\-]*)|(\.[\w\-]*)|(:[\w\-]*)|(>\s[\w\-]*)/g,
             matches = tag.match(re);
 
         let classes = [],
             tagname = 'div',
-            id = null;
+            id = null,
+            other = {}; 
 
         matches.forEach(m => {
             if (m[0] === '#')
                 id =  m.slice(1,);
             else if (m[0] === '.')
                 classes.push(m.slice(1,));
+            else if (m[0] === ':') {
+                other.place = m.slice(1,);
+                classes.push(m.slice(1,));
+            }
+            else if (m[0] === '>') 
+                other.put = m.slice(2,);
             else
                 tagname = m.length ? m : 'div';
+
         });
 
-        return {classes, tagname, id}
+        return {classes, tagname, id, other}
     };
 
 module.exports = Parse; 
 
-},{"./dom":9}],12:[function(require,module,exports){
+},{"./dom":9,"lolo":1}],12:[function(require,module,exports){
 let __ = require('lolo'),
     _r = __.r;
 
@@ -1632,42 +1670,52 @@ function App (updates={}, hooks={}) {
     let app = {};
 
     app.update = (e, ...xs) => {
-        let update = updates[e],
-            hook = hooks[e];
-        if (hook);
-            __.do(...hook)(...xs);
+        let update = updates[e];
         return update
-            ? updates[e](state(), ...xs)
+            ? update(state(), ...xs)
                 .bind(app.continue)
-            : my.pass(state(), ...xs);
+            : app.pass(state(), ...xs);
     };
+
+    app.hooked = (e, ...xs) => {
+        let hook = hooks[e];
+        return hook
+            ? hook(state(), ...xs)
+            : state().return(() => {});
+    }
 
     app.continue = r => typeof[r] === 'string'
         ? app.update(r)
         : state().return(r);
 
-    my.on = (e, f) => {
+    app.on = (e, f) => {
         updates[e] = f;
-        return my;
+        return app;
     }
 
-    my.hook = (e, ...gs) => {
-        hooks[e] = gs;
-        return my;
+    app.hook = (e, g) => {
+        hooks[e] = g;
+        return app;
     }
     
-    my.pass = () => state().return(IO.return(0));
+    app.pass = () => state().return(IO.return(0));
 
-    app.main = (e0, m0) => {
-        let [io, m1] = app.update(...e1).run(m0);
-        return io.await()
-            .bind(e1 => main(e1, m1));
+    app.main = (...e0) => m0 => {
+        let [io, m1] = app.update(...e0).run(m0),
+            hook = app.hooked(...e0).eval(m0);
+
+        return io
+            .do(() => hook(m1))
+            .await()
+            .bind(e1 => app.main(...e1)(m1));
     };
 
-    app.start = m0 => app.main('start', m0);
+    app.start = m0 => app.main('start')(m0);
 
     return app;
 }
+
+module.exports = App;
 
 },{"./io":10,"./state":12,"lolo":1}]},{},[6])(6)
 });
