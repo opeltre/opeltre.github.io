@@ -11,8 +11,9 @@ defaults:
       path: ""
       type: "examples"
     values: 
-      layout: "example"
-      js:     true
+      layout:   "example"
+      js:       true
+      app:      true
 
 sass:
     sass_dir: _sass

@@ -7,8 +7,10 @@ layout: domorphic
     <main class="page example tr-width"> 
 
         <h2> {{page.title}} </h2> 
-
-        {% include_relative includes/app_div.html %}
+      
+        {% if page.app %}
+        {% include_relative includes/app_div.html id='app' %}
+        {% endif %}
 
         {{ content }}
 

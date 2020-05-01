@@ -1,6 +1,6 @@
+- name: research
+  url: "/research"
 - name: domorphic
   url: "/domorphic"
 - name: blog
   url: "/blog"
-- name: research
-  url: "/research"

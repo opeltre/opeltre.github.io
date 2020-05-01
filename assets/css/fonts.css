@@ -2,3 +2,13 @@
     font-family: "avenir";
     src: url("/assets/fonts/avenir/AvenirLTStd-Book.otf");
 }
+
+@font-face {
+    font-family: "iosevka";
+    src: url("/assets/fonts/iosevka/iosevka-ss04-regular.ttf");
+}
+
+@font-face {
+    font-family: "iosevka light";
+    src: url("/assets/fonts/iosevka/iosevka-ss04-light.ttf");
+}

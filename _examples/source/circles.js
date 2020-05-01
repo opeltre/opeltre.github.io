@@ -4,7 +4,7 @@ let n = 10,
     f = Math.sqrt(3) * Math.PI,
     IO = dom.IO;
 
-//  sample : Int -> [Num]
+//  samples : Int -> [Num]
 let samples = k => [...Array(n)]
     .map((_, i) => 2 * i * Math.PI / n)
     .map(t => t + k * dt);
