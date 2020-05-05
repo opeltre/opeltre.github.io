@@ -14,7 +14,6 @@ let samples = k => [...Array(n)]
 //  circle : Num -> Node
 let circle = dom('circle').place('circle')
     .attr('r', 4)
-    .attr('fill', '#418')
     .attr('transform', m => `translate(${m.x}, ${m.y})`)
     .style('transition', `transform ${ds}s`)
     .pull(t => ({ 

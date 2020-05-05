@@ -3,6 +3,8 @@
 @import 'index';
 @import 'page';
 
+$p-width: 450px; 
+
 body, html {
     padding: 0;
     margin: 0;
@@ -33,7 +35,7 @@ body {
 }
 
 .paragraph {
-    max-width: 400px;
+    max-width: $p-width;
     font-size: 10pt;
     font-weight: lighter;
 }
@@ -45,12 +47,20 @@ button {
     padding: 3px 10px;
     margin: 5px;
 }
-.highlight * {
+.highlight *, code {
     font-family: $font-code;
     font-size: $font-size-code;
+    white-space: pre;
 }
 pre {
     padding: $font-size-code;
+}
+code {
+    background-color: $bg-color-code;
+}
+p code, li code {
+    padding: 1px 4px;
+    z-index: -1;
 }
 code * {
     font-family: mono;

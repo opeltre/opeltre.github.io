@@ -1,7 +1,7 @@
 let _r = __.record(),
     IO = dom.IO;
 
-//  M : Model 
+//    : Model 
 let M = {
     user:   'alice',
     msgs:   [],
@@ -15,8 +15,8 @@ let read = M => M.msgs
 //  send : Model -> Msg
 let send = M => ({
     sender: M.user,
-    body:   M.input,
-    date:   Date.now()
+    date:   Date.now(),
+    body:   M.input
 });
 
 
@@ -118,13 +118,10 @@ view.input = dom(':input', [
 
 //  .main : Model -> Node 
 view.main = dom('.chat')
-    .append(
-        view.msgs,
-        view.input
-    )
+    .append(view.msgs, view.input)
     .put(M => '#' + M.user);
 
 
-//------ Start a Romance ------
+//------ Start a romance ------
 
 ['alice', 'bob'].forEach(server.join); 

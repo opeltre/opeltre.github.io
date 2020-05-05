@@ -5,8 +5,8 @@ script: tree
 name: tree
 ---
 
-Because `dom` instances are mapped to pure functions, 
-you may just pipe them into recursive calls. 
+Because `dom` instances are pure functions, 
+you can very well pipe them in recursive calls. 
 
 
 <style> 

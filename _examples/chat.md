@@ -1,9 +1,11 @@
 ---
 title:  Chat Room 
 script: chatroom
-name:   chat room
+name:   chat
+order:  4
 app:    false
 ---
+
 <div class="flex-h"> 
 {% include_relative includes/app_div.html id="bob" %}  
 {% include_relative includes/app_div.html id="alice" %}  
