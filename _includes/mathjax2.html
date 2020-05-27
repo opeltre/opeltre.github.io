@@ -8,10 +8,15 @@ MathJax.Hub.Config({
         autoNumber: "AMS"
       }
     },
+    styles: {
+        ".MathJax_Preview": {
+        }
+    },
     tex2jax: {
       inlineMath:     [['$', '$'], ['\\(', '\\)' ]],
       displayMath:    [['$$', '$$'], ['\\[', '\\]']],
       processEscapes: true,
+      preview:  'none'
     }
 });
 MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
@@ -22,6 +27,6 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 	});
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_SVG">
 </script>
 

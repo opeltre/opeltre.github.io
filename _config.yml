@@ -3,8 +3,12 @@ collections:
     output: true
     permalink: /domorphic/:path
     sort_by: order
+  bp: 
+    output: true
+    permalink: /bp/:path
+    sort_by:  order
 
-include: ['examples/source','examples/includes']
+include: ['examples/source','examples/includes', 'bp/source', 'bp/assets']
 
 defaults:   
   - scope:
@@ -14,6 +18,14 @@ defaults:
       layout:   "example"
       js:       true
       app:      true
+  - scope:
+      path: ""
+      type: "bp"
+    values: 
+      layout:   "bp"
+      math:     2
+      js:       true
+      bp:       true
 
 sass:
     sass_dir: _sass

@@ -1,7 +1,7 @@
 ---
 title:  "Hexadecimal color picker"
 order:  2
-name:   color picker
+name:   colors
 script: color
 ---
 

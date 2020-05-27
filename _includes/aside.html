@@ -1,8 +1,8 @@
 <aside> 
     <ul class="flex-v"> 
-        {% for example in site.examples %} 
+        {% for item in include.items %} 
         <li > 
-            <a href="{{example.url}}">{{example.name}}</a> 
+            <a href="{{item.url}}">{{item.name}}</a> 
         </li> 
         {% endfor %}
     </ul> 

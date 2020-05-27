@@ -1,12 +1,18 @@
 ---
 layout: default
 ---
-<main class="flex-h"> 
-    <div class="grow"></div> 
 
-    <div class="page">
-        {{content}}
+<div class="flex-h stretch"> 
+
+    <div class="grow flex-h"> 
+        <div class="grow"></div> 
+
+        <main class="page">
+            {{content}}
+        </main>
+
+        <div class="grow"></div> 
     </div>
 
-    <div class="grow"></div> 
-</main>
+    {% include aside.html items=site.bp %}
+</div>

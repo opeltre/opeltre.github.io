@@ -28,7 +28,7 @@ let view = dom('div')
 //  input : m -> Node(e)
 let input = dom('input')
     .style('width', m => m.size[1])
-    .attr('placeholder', m => m.color.slice(1))
+    .attr('placeholder', m => `hex-code e.g. 85a`)
     .on('keyup', (e, io, m) => {
         let color = e.target.value;
         if (m.regex.test(color)) 
