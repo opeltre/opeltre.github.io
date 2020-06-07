@@ -47,7 +47,8 @@ _r.forEach((_, name) => main.app
 
 main.app
     .hook('loops', (st, Ls) => {
-        let scale = L => Math.min(1, Math.max(3 * L, 0.4));
+        let scale = L => (L + 1)/2
+            //Math.min(1, Math.max(3 * L, 0.4));
         return st.return(() => 
             Ls.forEach((Li, i) => units[`weights-${i}`]
                 .channel('refresh', {scale: scale(Li)})
