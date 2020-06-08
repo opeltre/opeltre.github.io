@@ -52,4 +52,4 @@ See [here][bp] for numerical experiments.
 
 [phd]:/assets/bib/Peltre-Message_Passing_Algorithms_and_Homology.pdf 
 [syco]:/assets/bib/Peltre-Homological_Algebra_for_Message_Passing_Algorithms.pdf
-[gsi]:/https://arxiv.org/abs/1903.06088.pdf
+[gsi]:https://arxiv.org/abs/1903.06088.pdf
