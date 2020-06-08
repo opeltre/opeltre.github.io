@@ -1,6 +1,9 @@
 - name: research
   url: "/research"
+- name: bp
+  url: "/bp"
 - name: domorphic
   url: "/domorphic"
 - name: blog
   url: "/blog"
+

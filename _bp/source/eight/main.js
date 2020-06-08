@@ -65,7 +65,10 @@ main.app
     )
 
 document.addEventListener('DOMContentLoaded', 
-    () => main.io.channel('dragend')
+    () => { 
+        main.io
+            .channel('dragend'); 
+    }
 );
 
 main.show = p => {

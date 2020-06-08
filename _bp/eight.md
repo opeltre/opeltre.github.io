@@ -1,6 +1,6 @@
 ---
-name:   Singularities with Two Loops
-order:  3
+name:   Singularities 
+order:  2
 ---
 
 <!-- dom --> 
@@ -277,10 +277,17 @@ depend on the couplings.
 
 <div id='plot'></div> 
 
+<p style="color: #654; font-size: 12px; margin-left: 40px; max-width: 620px;">
+N.B: <em>If some of the dots move too close to a boundary, 
+NaNs that may be encountered are believed 
+an artefact of some local probabilities tending to zero 
+-- although a javascript or mathematical error is not to be banned. </em>  
+</p> 
+
 The above plots are associated to diffusions originating 
 from $u_0 = u \pm \delta \varphi$. 
-One may see how the external magnetic field makes one of the unstable
-unstable as $u$ moves away from the cusp. 
+One may see how the external magnetic field makes either one of the initial 
+conditions unstable, as $u$ moves away from the cusp. 
 
 <!-- ====== js ====== -->
 

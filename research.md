@@ -3,34 +3,48 @@ layout: page
 math:   2
 ---
 
-## Numerical Simulations 
-
-See [here][bp] for numerical experiments. 
-
 [bp]: /bp
+
+## Background 
+
+My scientific interests lie at the interface between 
+mathematics, physics and computer science. 
+
+Startled by the conceptual novelty of quantum physics and general relativity, 
+I studied differential geometry, gauge theory and operator algebra, 
+and through the beautiful work of authors like &Eacute;lie Cartan and J.M. Souriau, 
+I came to love an uncelebrated field of science whose handful advocates 
+call mathematical physics.
+The broad curiosity of my PhD advisor however took me to still different places.
+
+## Message-Passing Algorithms 
+
+Providing with an asynchronous and parallelised computing 
+scheme to perform statistical inference, 
+message-passing algorithms have a wide variety of applications, 
+from telecoms to statistical physics, neuroscience and artificial intelligence. 
+The local structure of these algorithms, 
+which closely reflects cellular interactions, lead us to a natural homology theory
+where algebraic topology is applied to statistics.
+
+The geometry of their equilibria, together with the optimisation problems they solve, 
+become very reminiscent of harmonic analysis, 
+were it not for a twist of combinatorics that brings in 
+singularities, bifurcations and unstable equilibria. 
 
 ## Publications 
 
-- __PhD thesis__: [Message Passing Algorithms and Homology][phd]
+- __PhD thesis__: [Message Passing Algorithms and Homology][phd], 
+    see [here][bp] for numerical experiments. 
     
-    Message-passing algorithms have a wide variety of applications, 
-    from telecoms to thermodynamics and artificial intelligence. 
-    Providing with an asynchronous and parallelised computing 
-    scheme to perform statistical inference, their local structure
-    closely reflects neuronal interactions. 
-
-    This work unveils the algebraic topology underlying
-    message-passing algorithms. 
-    They are shown equivalent to transport equations of the form 
-    $$ \dot u = \delta \Phi(u) $$,
+    Message-passing algorithms are shown equivalent to transport equations 
+    of the form $$ \dot u = \delta \Phi(u) $$,
     where $u$ is a collection of local interaction potentials, 
-    and $\Phi(u)$ represents a heat flux from one region to the other. 
-    The boundary operator $\delta$, discrete analog of a divergence, 
-    is the degree one boundary of a natural homology theory 
-    of interest for any localised approach to high dimensional statistics. 
-    These structures hence naturally occur in the context of classical and quantum 
-    statistical physics, probabilistic graphical models and Boltzmann machines. 
+    $\Phi(u)$ represents a heat flux from one region to the other,
+    and the boundary opeator $\delta$ is the discrete analog of a divergence. 
 
+    These structures naturally occur in the context of classical and quantum 
+    statistical physics, probabilistic graphical models and Boltzmann machines. 
 
 - __SYCO'20__: [Homological Algebra for Message Passing Algorithms][syco]
 
