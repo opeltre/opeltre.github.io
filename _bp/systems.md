@@ -224,14 +224,11 @@ that naturally extends $A_0$, i.e:
 + a boundary operator
     $\delta : A_{p + 1} \to A_p$ satisfying $\delta \circ \delta = 0$,
 
-and provides with a projective resolution of the subspace
-$[A_0] \subseteq A_\Omega$
-spanned by potentials in the algebra of global observables.
 This means that $\delta A_1$ is precisely
 the kernel of the total energy map
 $\int_X : A_0 \longrightarrow A_\Omega$
 defined by equation $(\ref{H_Omega})$,
-and its image is represented by:
+its image being hence isomorphic to:
 
 $$ [A_0] \simeq A_0 / \delta A_1 $$
 
