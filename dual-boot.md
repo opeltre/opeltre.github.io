@@ -4,7 +4,7 @@ layout: page
 
 [swap]: https://wiki.archlinux.org/title/Partitioning#Swap
 
-# Dual Boot Win10-Manjaro XPS
+# Dual Boot Win10-Manjaro sur un Dell XPS
 
 Liens utiles: 
 - [AskUbuntu](https://askubuntu.com/questions/696413#answer-743329) passer le contrôleur disque en AHCI
