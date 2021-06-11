@@ -16,16 +16,19 @@ Liens utiles:
 
 2 clés USB, une grosse et une petite. 
 
-Sur la petite (2G+), copier l’installeur Manjaro Gnome [disponible ici](https://manjaro.org/downloads/official/gnome/). On peut vérifier la somme du fichier avec `sha1sum manjaro-x.iso` si on veut.
+Sur la petite (2G+), copier l’installeur de Manjaro Gnome [disponible ici](https://manjaro.org/downloads/official/gnome/) 
+(il y aussi kde ou xfce, mais il gèrent plus mal les écrans high dpi). 
+On peut vérifier la somme du fichier avec `sha1sum manjaro-x.iso` si on veut.
 
 Depuis linux, on peut simplement créer le disque montable avec `cp`:
 
 
 ````
-# lister les disques 
+-- lister les disques:
 $ lsblk
-# pour clé usb en /dev/sdb
-$ sudo cp manjaro-x.iso /dev/sdb
+
+-- clé usb en /dev/sdX:
+$ sudo cp manjaro-x.iso /dev/sdX
 ````
 
 Sur la grosse clé, il est préférable de faire un back up du système windows. Taper « Create Recovery Drive » après avoir appuyé sur la touche windows.
@@ -93,7 +96,7 @@ Choisir le mountpoint `/boot/efi` et cocher le flag `boot`.
 Windows l'utilise déjà pour booter en UEFI, Manjaro va simplement
 y installer le bootloader grub.
 
-En fait on peut faire ce qu'on veut tant qu'on laisse plus de 20GB pour
+N.B: On peut faire ce qu'on veut tant qu'on laisse plus de 20GB pour
 le système et une centaine de GB dans `/home` pour être tranquille.
 On pourrait même n'avoir qu'une seule grosse partition `/` en plus de la première petite 
 `/boot/efi` en fat32. 
