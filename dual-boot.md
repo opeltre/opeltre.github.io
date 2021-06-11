@@ -1,5 +1,5 @@
 ---
-layout:default
+layout: default
 ---
 
 # Dual Boot Win10-Manjaro XPS
