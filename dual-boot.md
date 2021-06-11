@@ -91,15 +91,16 @@ validé vers l'étape suivante). Par exemple, avec 1.5TB d'espace libre:
 - une partition ext4 montée en `/` de 50GB  pour le système Manjaro
 - une partition ext4 montée en `/home` de l'espace restant, 430GB, pour ses fichiers et programmes linux.
 
-Cliquer sur la première partition FAT32 du disque. 
-Choisir le mountpoint `/boot/efi` et cocher le flag `boot`. 
-Windows l'utilise déjà pour booter en UEFI, Manjaro va simplement
-y installer le bootloader grub.
-
 N.B: On peut faire ce qu'on veut tant qu'on laisse plus de 20GB pour
 le système et une centaine de GB dans `/home` pour être tranquille.
 On pourrait même n'avoir qu'une seule grosse partition `/` en plus de la première petite 
 `/boot/efi` en fat32. 
+
+Sélectionner la première partition FAT32 du disque. 
+Choisir le mountpoint `/boot/efi` et cocher le flag `boot`. 
+Windows l'utilise déjà pour booter en UEFI, Manjaro va 
+y installer le bootloader grub à côté.
+
 
 Une fois que l'on est content de la table de partition, valider. 
 
@@ -107,4 +108,30 @@ Une fois que l'on est content de la table de partition, valider.
 
 Laisser l'installeur faire son travail, il  partitionne, formatte les disques puis installe Manjaro. 
 
-On redémarre ensuite dans le grub d'où l'on peut choisir entre manjaro et windows. 
+On redémarre ensuite dans grub d'où Manjaro démarre par défaut au bout de quelques secondes. 
+
+## &Agrave; propos de Manjaro
+
+L'environnement de bureau gnome étant aussi utilisé par Ubuntu, il ne devrait pas y avoir beaucoup de dépaysement de ce point de vue là. 
+
+La principale différence est que Manjaro est basée sur [Arch Linux](http://archlinux.org) dont elle garde le gestionnaire de paquet [pacman](https://wiki.archlinux.org/title/Pacman), mais l'accompagne d'un utilitaire pour installer des programmes ([AUR](https://aur.archlinux.org/) compris). Quelques exemples en ligne de commande:
+
+```
+-- Mettre à jour les bases de paquets
+# pacman -Syy
+
+-- Chercher dans la base
+$ pacman -Ss texlive
+-- Informations sur le paquet
+$ pacman -Si texlive-core
+-- Installer un paquet
+# pacman -S texlive-core
+
+-- Interroger la base de paquets installés
+$ pacman -Q texlive
+
+-- Supprimer un paquet et ses dépendances inutiles
+# pacman -Rns texlive-publishers
+```
+
+Toutes les pages du [archwiki](https://wiki.archlinux.org) sont très bien écrites et documentées, par une communauté très technique. La plupart de ce qu'on y lit est applicable à Manjaro, et la qualité de la documentation fait une partie du plaisir d'utiliser cette distribution. 
