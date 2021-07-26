@@ -19,6 +19,6 @@ I was also a contributor of [geomstats],
 an open-source python library for Riemannian geometry in machine learning
 built by a fantastic team of international collaborators. 
 
-[phd]:assets/bib/Peltre-Message_Passing_Algorithms_and_Homology.pdf
+[phd]:/assets/bib/Peltre-Message_Passing_Algorithms_and_Homology.pdf
 [geomstats]:https://github.com/geomstats/geomstats
 [arxiv-phd]:https://arxiv.org/abs/2009.11631
