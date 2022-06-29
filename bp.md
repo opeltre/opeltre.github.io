@@ -12,7 +12,7 @@ math:   2
 In the following pages, still under construction, 
 one shall find supplementary material to the [dissertation](/assets/bib/phd.pdf).
 
-1) This [overview](systems) should take the reader to quickly 
+1) This [overview](bp/systems) should take the reader to quickly 
 understand what the above drawing represents: 
 - a collection of local interaction potentials $u \in A_0$, 
 - the associated global hamiltonian $H_\Omega = \sum_\alpha u_\alpha$,
@@ -30,7 +30,7 @@ The [cusp] depicted above illustrates the kind of singularities
 message-passing algorithms may encounter. 
 
 This geometric insight on message-passing equilibria 
-allowed us to [parameterise](eight) all singular states occuring
+allowed us to [parameterise](bp/eight) all singular states occuring
 on a graph with two loops, a cuspidal situation as illustrated above. 
  
 [cusp]: https://en.wikipedia.org/wiki/Catastrophe_theory
