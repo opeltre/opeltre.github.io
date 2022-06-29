@@ -114,7 +114,7 @@ On redémarre ensuite dans grub d'où Manjaro démarre par défaut au bout de qu
 
 L'environnement de bureau gnome étant aussi utilisé par Ubuntu, il ne devrait pas y avoir beaucoup de dépaysement de ce point de vue là. 
 
-La principale différence est que Manjaro est basée sur [Arch Linux](http://archlinux.org) dont elle garde le gestionnaire de paquet [pacman](https://wiki.archlinux.org/title/Pacman), mais l'accompagne d'un utilitaire pour installer des programmes ([AUR](https://aur.archlinux.org/) compris). Quelques exemples en ligne de commande:
+La principale différence est que Manjaro est basée sur [Arch Linux](http://archlinux.org) dont elle garde le gestionnaire de paquets [pacman](https://wiki.archlinux.org/title/Pacman), mais l'accompagne d'un utilitaire pour installer des programmes ([AUR](https://aur.archlinux.org/) compris). Quelques exemples en ligne de commande:
 
 ```
 -- Mettre à jour les bases de paquets
@@ -134,4 +134,10 @@ $ pacman -Q texlive
 # pacman -Rns texlive-publishers
 ```
 
-Toutes les pages du [archwiki](https://wiki.archlinux.org) sont très bien écrites et documentées, par une communauté très technique. La plupart de ce qu'on y lit est applicable à Manjaro, et la qualité de la documentation fait une partie du plaisir d'utiliser cette distribution. 
+Toutes les pages du [archwiki](https://wiki.archlinux.org) sont très bien écrites et documentées, par une communauté très technique. La plupart de ce qu'on y lit est applicable à Manjaro, et la qualité de la documentation d'Arch fait une partie du plaisir d'utiliser cette distribution. 
+
+__N.B.__ Manjaro dévie d'Arch sur plusieurs choses relativement bas niveau, comme la gestion de version du noyau linux ou l'installation et la configuration des pilotes. Certains de ces réglages sont visibles ici: 
+
+Appuyer sur la touche Windows > taper settings > cliquer sur Manjaro settings
+
+Voir aussi ce post sur l'[installation de CUDA sur Manjaro](manjaro-cuda.md). 
