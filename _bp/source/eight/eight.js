@@ -118,3 +118,32 @@ Eight.eigflux = p => {
 
         return Eight.scale(1 / Eight.norm(phi))(phi);
 };
+
+Eight.param = model => {
+
+    let m0 = {
+        'field':        0,
+        'loops':        [1/3, 1/3],
+        'weights-0':    [1/3, 1/3, 1/3],
+        'weights-1':    [1/3, 1/3, 1/3],
+        'offsets-0':    [0, 0],
+        'offsets-1':    [0, 0]
+    }
+    
+    let m = _r.update(model)(m0);
+
+    let Bk = m['field'],
+    [Ci, Cj] = m['offsets-0'].map(C => C + Bk),
+    [ci, cj] = m['offsets-1'].map(c => c + Bk),
+    [L, l] = m['loops'],
+    [Cik, Cjk, Cij] = m['weights-0'].map(C => - C * Math.log(L)),
+    [cik, cjk, cij] = m['weights-1'].map(c => - c * Math.log(l));
+
+    return Eight.p({
+        'k': Bk,
+        'i+': Ci,       'j+': Cj, 
+        'i-': ci,       'j-': cj,
+        'i+.k': Cik,    'j+.k': Cjk,    'i+.j+': Cij,
+        'i-.k': cik,    'j-.k': cjk,    'i-.j-': cij
+    });
+};

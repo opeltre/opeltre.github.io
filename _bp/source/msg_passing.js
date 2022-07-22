@@ -19,6 +19,14 @@ function complex (X) {
     let K = _top.complex(A, X);
 
     K._log = K.map(_R._log);
+    K.exp_ = K.map(_R.exp_);
+    K.gibbs = H => {
+        let p = K.exp_(H);
+        return K.map(pa => {
+            let Za = _R.int(pa);
+            return _R.map(pai => pai / Za)(pa)
+        })(p);
+    }
 
     K.freeEnergy = H => K.int(K.compute(0)(
             a => N.c(chain.id(a)) * _R.freeE(K.get(H, a))

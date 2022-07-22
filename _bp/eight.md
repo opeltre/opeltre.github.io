@@ -11,6 +11,7 @@ order:  2
 <!-- bp --> 
 <script src="source/ising.js"></script> 
 <script src="source/eight/eight.js"></script> 
+<script src="source/eight/maxent.js"></script> 
 
 # Singularities with Two Loops
 
