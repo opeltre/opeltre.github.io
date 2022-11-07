@@ -2,16 +2,16 @@ let K = Eight,
     flow = (t, H) => K.integrate(K.tau_zeta, 0.2, t)(H);
 
 //--- singular belief outside the cusp and tangent direction
-let p = K.param({field: 0}),
+let p = K.param({field: 0.8}),
     H = K._log(p),
     phi = K.eigflux(p),
-    dphi = K.codiff(1)(phi);
+    dphi = K.zeta(0)(K.codiff(1)(phi));
 
 console.log(K.inner(K.gibbs(K.zero), dphi))
 
 //--- segments from 0 to H0 +- tangent displacement
 function initial_conditions (H, n, delta=1) {
-    let t = __.linspace(-2, 2, n),
+    let t = __.linspace(.6, 1.4, n),
         dH = K.scale(delta)(dphi),
         Hs = __.map(ti => K.scale(ti)(H))(t),
         H0 = __.map(Hi => K.add(Hi, dH))(Hs),
@@ -21,7 +21,7 @@ function initial_conditions (H, n, delta=1) {
     return out;
 }
     
-let Hs = initial_conditions(H, 43, 1);
+let Hs = initial_conditions(H, 81, 1);
    
 let curves = __.map(__.map(H => flow(30, H)))(Hs);
 
