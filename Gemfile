@@ -4,7 +4,9 @@ source "https://rubygems.org"
 
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
-gem "jekyll"
-# gem "rails"
+gem "jekyll", "= 4.3.0"
+#gem "rails"
 
-gem "webrick", "~> 1.7"
+#gem "http_parser.rb", "~> 0.7.0"
+#gem "webrick", "~> 1.7"
+
