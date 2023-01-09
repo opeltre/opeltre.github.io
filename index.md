@@ -3,92 +3,64 @@ layout: index
 math: 2
 ---
 
-# About me
 
-After studying mathematics and physics, I worked more specifically 
-on the relationships between statistical physics, information theory 
-and artificial intelligence. Now working on applying self-supervised learning 
-to datasets of intracranial flux and pressure time series for the [revert] project, 
-I am planning to spend more time developing a fast python library 
-for simulating probabilistic graphical models, bayesian networks and hypergraph neural networks, it is available on github as [topos]. 
+# Bio
 
+My scientific interests lie at the interface between 
+mathematics, physics and computer science. 
 
-# Research interests
+After a curriculum in mathematics and physics, 
+I notably studied differential geometry, gauge theory and operator algebra, 
+mostly motivated by the challenges posed by quantum physics and general relativity. 
 
-My PhD thesis
-[Message Passing Algorithms and Homology][phd] is 
-available here and on the [arXiv][arxiv-phd]. 
-In this manuscript I show that probabilistic graphical 
-models (also known as Markov random fields or energy based models) 
-are endowed with a natural topological structure, inherited from the 
-simplicial nerve of a covering 
-$ \{ \mathrm{a, b} \dots \} \subseteq {\cal P}(\Omega)$ describing interacting or simultaneously observable variables. 
+My doctoral research then focused on statistical physics and 
+graphical models. I used algebraic topology
+to describe Bethe-Kikuchi variational 
+principles and generalised belief propagation (GBP).
+I proposed new regularisations of this message-passing algorithm, which efficiently estimate the marginals of a high dimensional probability distribution, and 
+take the form of continuous-time diffusion equations.
 
-On the complex of local measures, a differential
-operator 
-$ d : C_{0}^* \to C_1^* \to \dots $ 
-captures the marginal consistency of 
-local beliefs $p \in C^*_{0}$ by the cocycle equation $dp = 0$. 
-
-On the dual complex of local 
-observables, the adjoint codifferential 
-$\delta = d^*$ maps heat fluxes $\phi \in C_1$ onto interaction potentials $v = \delta \phi \in C_0$ whose global sum vanishes. 
-
-The generalised belief propagation (GBP) algorithm of Yedidia _et al._, along with new message-passing schemes, 
-are recovered by diffusion equations of the form 
-$\frac {dh} {dt} = \delta \Phi(h)$ on interaction potentials 
-$h \in C_0$ which hence preserve the global energy function (or opposite log-likelihood) $\tilde H = \sum_{\rm a} h_{\rm a}$. 
-
-Stationary states of GBP and its regularisations are reached when the potential $h$ defines consistent beliefs
-$p = \rho(H) = \rho(\zeta h)$ where the Gibbs state map (softmin) 
-$\rho : C_0 \to C_0^*$ and the Dirichlet zeta transform 
-$\zeta : C_0 \to C_0$ are given by: 
-
-$$ \rho(H)_{\rm a} = 
-\frac {\mathrm{e}^{-H_{\rm a}}} {\sum {\rm e}^{-H_{\rm a}}} 
-\quad{\rm and}\quad 
-\zeta(h)_{\rm a} = \sum_{\rm b \subseteq a} h_{\rm b}$$ 
-
-GBP hence solves a difficult constraint satisfaction problem which consists of finding potentials at the intersection of an affine subspace $[h] = h + \delta C_1$ and the non-linear manifold ${\rm Fix} = (\rho \zeta)^{-1}({\rm Ker\:} d)$,
-enforcing energy conservation and marginal consistency constraints respectively. 
+I am now working as a postdoc at the Computer science Research Institute of Lens (CRIL). I focus on packaging [an efficient implementation][topos] of
+graphical models and message-passing algorithms for the GPU. 
+I also wish to extend the discrete algebraic and geometric framework 
+developed during my PhD to wider applications, such as continuous or quantum graphical models.
 
 <img src="bp/assets/pli.jpg"
     width="500px"
     alt="pli et cusp"> 
 
-## References
-
-- Yedidia, Freeman, Weiss (2001): _Bethe free energy, Kikuchi approximations, and belief propagation algorithms_, Technical report TR2001-16 Mitsubishi Electric Research Laboratories
-- Yedidia, Freeman, Weiss, _Constructing Free Energy Approximations and Generalized Belief Propagation Algorithms_, 2005, IEEE Transactions of Information Theory (51)
-- Kikuchi (1951)
-- Morita (1957)
-- Gallagher (1963)
-- Pearl (1982)
-- Knoll, Pernkopf 
-- Mooij 
-- Mézard, Montanari
-- Sun
-
-# Programming
-
-I was a contributor of [geomstats], 
-an open-source python library for Riemannian geometry in machine learning
-built by a fantastic team of international collaborators. 
 
 # Publications
 
-- [Local Max-Entropy and Free Energy Principles solved by Belief Propagation][maxent], 2022 (preprint)
+- [Local Max-Entropy and Free Energy Principles solved by Belief Propagation][maxent], 2023 (short preprint). Presented at the MaxEnt 2022 conference, extended article awaiting publication in _Entropy_.
 - [Belief Propagation as Diffusion][gsi21], 2021, Geometric Science of Information, Frederic Barbaresco and Frank Nielsen editors, Springer (proceedings of GSI 21).
 - [Message-Passing Algorithms and Homology: from thermodynamics to statistical learning][arxiv-phd], 2020, Thèses, Université Paris Cité.
-- [A Homological approach to Belief Propagation and Bethe Approximations][gsi19], 2019, Geometric Science of Information, Frederic Barbaresco and Frank Nielsen editors, Springer (proceedings of GSI 19).
+- [Homological Algebra for Message Passing Algorithms][syco20], 2020, 
+presented at the SYCO 2020 conference in Tallinn (preprint).
+- [A Homological Approach to Belief Propagation and Bethe Approximations][gsi19], 2019, Geometric Science of Information, Frederic Barbaresco and Frank Nielsen editors, Springer (proceedings of GSI 19).
 
+_as coauthor_ 
 
-[maxent]:https://404
+- [Equivariant Message Passing Neural Networks for Material Discovery][a3i], 2023, AAAI (preprint) 
+-- _with Astrid Klipfel, Yaël Frégier, Zied Bouraoui and Adlane Sayede_.
+- [Extrafine Sheaves and Interaction Decompositions][agt], 
+2023, under revision for _Algebraic and Geometric Topology_ (preprint)
+-- _with Daniel Bennequin, Grégoire Sergeant-Perthuis and Juan-Pablo Vigneaux_.
+- [Geomstats: a Python Package for Riemannian Geometry in Machine Learning][geomstats-jmlr], 2020, _Journal of Machine Learning Research_, 21 (223), pages 1-9 -- _with Nina Miolane, Nicolas Guigui, Alice Le Brigant, Johan Mathe, Benjamin Hou, Yann Thanwerdas, Stefan Heyder, Niklas Koep, Hadi Zaatiti, Hatem Hajri, Yann Cabanes, Thomas Gerald, Paul Chauchat, Christian Shewmake, Daniel Brooks, Bernhard Kainz, Claire Donnat, Susan Holmes and Xavier Pennec_.
+- [Introduction to Geometric Learning in Python with Geomstats][geomstats-scipy], 2020, SciPy 2020 - 19<sup>th</sup> Python in Science Conference -- _with Nina Miolane, Nicolas Guigui, Hadi Zaatiti, Christian Shewmake, Hatem Hajri, Daniel Brooks, Alice Le Brigant, Johan Mathe, Benjamin Hou, Yann Thanwerdas, Stefan Heyder, Niklas Koep, Yann Cabanes, Thomas Gerald, Paul Chauchat, Bernhard Kainz, Claire Donnat, Susan Holmes and Xavier Pennec_.
+
+[maxent]:https://arxiv.org/abs/2207.00841
 [gsi21]:https://arxiv.org/abs/2107.12230
+[syco20]:/assets/bib/Peltre-Homological_Algebra_for_Message_Passing_Algorithms.pdf
 [gsi19]:https://arxiv.org/abs/1903.06088
-[phd]:assets/bib/Peltre-Message_Passing_Algorithms_and_Homology.pdf
 
+[phd]:assets/bib/Peltre-Message_Passing_Algorithms_and_Homology.pdf
 [arxiv-phd]:https://arxiv.org/abs/2009.11631
+
+[a3i]:https://404
+[agt]:https://arxiv.org/abs/2009.12646
+[geomstats-jmlr]:https://www.jmlr.org/papers/volume21/19-027/19-027.pdf
+[geomstats-scipy]:https://hal.inria.fr/hal-02908006/
 
 [geomstats]:https://github.com/geomstats/geomstats
 

@@ -1,4 +1,4 @@
-@import variables
+@use 'variables'
 
 %navlist 
   list-style: none
@@ -7,7 +7,7 @@
 
 nav ul 
   @extend %navlist
-  border-bottom: 2px solid $color-cream 
+  border-bottom: 2px solid variables.$color-cream 
   padding: 0px 30px
   height: 50px
 
@@ -15,7 +15,7 @@ aside ul
   @extend %navlist
 
 aside 
-  border: 1px solid $color-cream
+  border: 1px solid variables.$color-cream
   border-top: 0px
 
 /*--- items ---*/ 
@@ -25,7 +25,7 @@ aside
   a, a:visited
     color: #000
   a:hover
-    color: $a-color
+    color: variables.$a-color
 
 
 #home 
@@ -35,7 +35,7 @@ aside
 aside li    
   @extend %navitem 
   padding: 5px 30px
-  border-bottom: 1px solid $color-cream
+  border-bottom: 1px solid variables.$color-cream
   a 
     color: #789
 

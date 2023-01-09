@@ -11,18 +11,18 @@ My scientific interests lie at the interface between
 mathematics, physics and computer science. 
 
 After undergraduate double-curriculum in mathematics and physics, 
-I thoroughly studied differential geometry, gauge theory and operator algebra, 
-mostly motivated by the conceptual novelty of quantum physics and general relativity. 
+I studied differential geometry, gauge theory and operator algebra, 
+mostly motivated by the challenges posed by quantum physics and general relativity. 
 
 My doctoral research then focused on the relationships between 
-algebraic topology and message-passing algorithms, allowing me 
+algebraic topology and message-passing algorithms, leading me 
 to propose a clear picture of their geometric structure, 
 various regularisations of their dynamic and a better understanding 
 of their equilibria and singularities. 
 
+I am now working at the Computer science Research Institute of Lens (CRIL)
 
 ## Message-Passing Algorithms 
-
 
 ## Publications 
 
