@@ -20,8 +20,6 @@ to propose a clear picture of their geometric structure,
 various regularisations of their dynamic and a better understanding 
 of their equilibria and singularities. 
 
-I am now working at the Computer science Research Institute of Lens (CRIL)
-
 ## Message-Passing Algorithms 
 
 ## Publications 
