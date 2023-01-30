@@ -1,4 +1,4 @@
-@use 'variables';
+@import 'variables';
 
 @import 'nav';
 @import 'examples';
@@ -50,15 +50,15 @@ button {
     margin: 5px;
 }
 .highlight *, code {
-    font-family: variables.$font-code;
-    font-size: variables.$font-size-code;
+    font-family: $font-code;
+    font-size: $font-size-code;
     white-space: pre;
 }
 pre {
-    padding: variables.$font-size-code;
+    padding: $font-size-code;
 }
 code {
-    background-color: variables.$bg-color-code;
+    background-color: $bg-color-code;
 }
 p code, li code {
     padding: 1px 4px;
