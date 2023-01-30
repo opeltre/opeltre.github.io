@@ -5,7 +5,7 @@ source "https://rubygems.org"
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 gem "jekyll", "= 4.3.0"
-gem "jekyll-sass-converter", ">= 3.0" #github: "jekyll/jekyll-sass-converter"
+gem "jekyll-sass-converter", "= 3.0" #github: "jekyll/jekyll-sass-converter"
 #gem "rails"
 
 #gem "http_parser.rb", "~> 0.7.0"
