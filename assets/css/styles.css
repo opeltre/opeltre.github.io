@@ -1,0 +1,199 @@
+aside ul, nav ul {
+  list-style: none;
+  padding-left: 0px;
+  margin: 0px;
+}
+
+nav ul {
+  border-bottom: 2px solid #f6f5f4;
+  padding: 0px 30px;
+  height: 50px;
+}
+
+aside {
+  border: 1px solid #f6f5f4;
+  border-top: 0px;
+}
+
+/*--- items ---*/ 
+nav li a, aside li a {
+  text-decoration: none;
+}
+nav li a, aside li a {
+  color: #000;
+}
+nav li a:hover, aside li a:hover {
+  color: #29d;
+}
+
+#home {
+  font-size: 20px;
+  margin: 0px;
+}
+
+aside li {
+  padding: 5px 30px;
+  border-bottom: 1px solid #f6f5f4;
+}
+aside li a {
+  color: #789;
+}
+
+nav li {
+  margin: 0px 40px;
+}
+
+#source figure, #source pre {
+  margin: 0px;
+}
+
+/*--- app containers --- */
+.app-ctr {
+  border: 1px solid #eed;
+  margin: 1px;
+  padding: 20px;
+  position: relative;
+}
+
+.app-ctr code {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-family: mono;
+  color: #dcd;
+  background-color: #fff;
+  font-size: 12px;
+  margin: 0px 2px;
+}
+
+#portrait {
+  width: 160px;
+  margin: 20px 60px;
+}
+
+#opeltre {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+#about div {
+  margin: 3px;
+  font-size: 14px;
+}
+
+#about .email {
+  font-family: "iosevka light";
+  font-size: 14px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+.page {
+  margin: 40px auto;
+  max-width: 80%;
+  min-width: 500px;
+  font-size: 16px;
+}
+
+.page * {
+  max-width: 700px;
+}
+
+.page a {
+  text-decoration: none;
+  color: #29d;
+}
+.page p {
+  max-width: 700px;
+  text-justify: inter-word;
+}
+.page h1 {
+  font-size: 30px;
+}
+
+.page img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page .definition {
+  border-left: 1px solid #ccc;
+  padding-left: 10px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  max-width: 700px;
+}
+
+.page ul {
+  padding-left: 30px;
+}
+
+body, html {
+  padding: 0;
+  margin: 0;
+  background-color: white;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+body {
+  padding: 0px 0px;
+}
+
+* {
+  font-family: "avenir", sans-serif;
+}
+
+/*--- text bodies ---*/
+.strip {
+  max-width: 75%;
+  padding-top: 20px;
+  padding-bottom: 100px;
+}
+
+.paragraph {
+  max-width: 450px;
+  font-size: 10pt;
+  font-weight: lighter;
+}
+
+/*---- elements ----*/
+button {
+  border: 1px solid #fff;
+  padding: 3px 10px;
+  margin: 5px;
+}
+
+.highlight *, code {
+  font-family: "iosevka light";
+  font-size: 14px;
+  white-space: pre;
+}
+
+pre {
+  padding: 14px;
+}
+
+code {
+  background-color: #f8f8ff;
+}
+
+p code, li code {
+  padding: 1px 4px;
+  z-index: -1;
+}
+
+code * {
+  font-family: mono;
+}
+
+/*# sourceMappingURL=styles.css.map */
