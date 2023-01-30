@@ -26,6 +26,3 @@ defaults:
       math:     2
       js:       true
       bp:       true
-
-sass:
-    sass_dir: _sass
