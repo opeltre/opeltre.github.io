@@ -4,7 +4,7 @@ math: 2
 ---
 
 
-# Bio
+# About me
 
 My scientific interests lie at the interface between 
 mathematics, physics and computer science. 
